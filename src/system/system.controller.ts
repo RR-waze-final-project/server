@@ -42,6 +42,7 @@ export class SystemController {
   async createSystem(
     @Body('topic') topic: string,
     @Body('urlName') urlName: string,
+    @Body('urlImg') urlImg: string,
     @Body('objectName') objectName: string,
     @Body('adminUid') adminUid: string,
     @Body('description') description: string,
@@ -51,6 +52,7 @@ export class SystemController {
       return await this.systemService.AddSystem(
         topic,
         urlName,
+        urlImg,
         objectName,
         adminUid,
         description,
@@ -67,6 +69,7 @@ export class SystemController {
     @Param('uid') uid: string,
     @Body('topic') topic: string,
     @Body('urlName') urlName: string,
+    @Body('urlImg') urlImg: string,
     @Body('objectName') objectName: string,
     @Body('adminUid') adminUid: string,
     @Body('description') description: string,
@@ -87,6 +90,7 @@ export class SystemController {
         uid,
         topic,
         urlName,
+        urlImg,
         objectName,
         adminUid,
         description,
