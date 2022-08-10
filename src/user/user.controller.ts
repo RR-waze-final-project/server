@@ -1,10 +1,10 @@
+/* eslint-disable prettier/prettier */
 import {
   Body,
   Controller,
   Delete,
   Get,
   Param,
-  Patch,
   Post,
   Put,
 } from '@nestjs/common';
@@ -16,35 +16,81 @@ export class UserController {
 
   @Get()
   async getAll() {
-    return await this.userService.getUsers();
+    try {
+      return await this.userService.getUsers();
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+    
   }
 
   @Get(':id')
   async getUserById(@Param('id') id: string) {
-    return await this.userService.getUserById(id);
+    try {  
+      return await this.userService.getUserById(id);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
   }
 
   @Post()
   async signup(
+    @Body('role') role: string,
+    @Body('firstName') firstName: string,
+    @Body('lastName') lastName: string,
     @Body('phone') phone: string,
-    @Body('age') age: number,
-    @Body('name') name: string,
+    @Body('email') email: string,
   ) {
-    return await this.userService.AddUser(phone, age, name);
+    try {
+      return await this.userService.AddUser(
+      role,
+      firstName,
+      lastName,
+      phone,
+      email
+      );
+    } catch (err) {
+      return err;
+    }
+    
   }
 
   @Put(':id')
   async updateUser(
     @Param('id') id: string,
+    @Body('role') role: string,
+    @Body('firstName') firstName: string,
+    @Body('lastName') lastName: string,
     @Body('phone') phone: string,
-    @Body('age') age: number,
-    @Body('name') name: string,
+    @Body('email') email: string,
   ) {
-    return await this.userService.updateUser(id, phone, age, name);
+    try {
+      const isExists = await this.userService.getUserById(id);
+
+      if (!isExists) {
+        return {
+          statusCode: 403,
+          message: ['user is not exists'],
+          error: 'Bad Request',
+        };
+      }
+
+      return await this.userService.updateUser(id, role, firstName, lastName, phone, email);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
   }
 
   @Delete(':id')
   async deleteUser(@Param('id') id: string) {
-    return await this.userService.deleteUser(id);
+    try{ 
+      return await this.userService.deleteUser(id);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
   }
 }
