@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -12,6 +13,7 @@ export class SystemService {
   async AddSystem(
     topic: string,
     urlName: string,
+    urlImg: string,
     objectName: string,
     adminUid: string,
     description: string,
@@ -20,6 +22,7 @@ export class SystemService {
     const newSystem = new this.systemModel({
       topic,
       urlName,
+      urlImg,
       objectName,
       adminUid,
       description,
@@ -45,6 +48,7 @@ export class SystemService {
     uid: string,
     topic: string,
     urlName: string,
+    urlImg: string,
     objectName: string,
     adminUid: string,
     description: string,
@@ -57,6 +61,7 @@ export class SystemService {
           $set: {
             topic: topic,
             urlName: urlName,
+            urlImg: urlImg,
             objectName: objectName,
             adminUid: adminUid,
             description: description,
