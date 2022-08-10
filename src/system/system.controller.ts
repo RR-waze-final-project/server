@@ -33,10 +33,10 @@ export class SystemController {
     }
   }
 
-  //   @Get(':adminUid')
-  //   async getSystemsOfAdmin(@Param('adminUid') adminUid: string) {
-  //     return await this.systemService.getSystemsOfAdmin(adminUid);
-  //   }
+  @Get('specificSystems/:adminUid')
+  async getSystemsOfAdmin(@Param('adminUid') adminUid: string) {
+    return await this.systemService.getSystemsOfAdmin(adminUid);
+  }
 
   @Post()
   async createSystem(
