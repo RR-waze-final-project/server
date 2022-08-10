@@ -12,7 +12,7 @@ import { SystemService } from './system.service';
 
 @Controller('system')
 export class SystemController {
-  constructor(private systemService: SystemService) {}
+  constructor(private systemService: SystemService) { }
 
   @Get()
   async getAll() {
@@ -34,10 +34,10 @@ export class SystemController {
     }
   }
 
-  //   @Get(':adminUid')
-  //   async getSystemsOfAdmin(@Param('adminUid') adminUid: string) {
-  //     return await this.systemService.getSystemsOfAdmin(adminUid);
-  //   }
+  @Get('specificSystems/:adminUid')
+  async getSystemsOfAdmin(@Param('adminUid') adminUid: string) {
+    return await this.systemService.getSystemsOfAdmin(adminUid);
+  }
 
   @Post()
   async createSystem(
