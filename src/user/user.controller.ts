@@ -35,6 +35,16 @@ export class UserController {
     }
   }
 
+  @Get('email:email')
+  async getUserByEmail(@Param('email') email: string) {
+    try {  
+      return await this.userService.getUserByEmail(email);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
   @Post()
   async signup(
     @Body('role') role: string,
