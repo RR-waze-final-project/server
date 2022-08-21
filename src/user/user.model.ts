@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import * as mongoose from 'mongoose';
+import { Types } from 'mongoose';
 
 export const UserSchema = new mongoose.Schema({
   role: { type: String, enum: ['admin', 'customer'], required: true },
@@ -10,6 +11,7 @@ export const UserSchema = new mongoose.Schema({
 });
 
 export interface User {
+  _id: Types.ObjectId,
   uid: string;
   role: string;
   firstName: string;
