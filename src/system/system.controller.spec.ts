@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-iimport { Test, TestingModule } from '@nestjs/testing';
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { Test } from '@nestjs/testing';
 import { SystemController } from './system.controller';
 import { SystemService } from './system.service';
 
@@ -8,26 +9,36 @@ describe('SystemController', () => {
   let systemService: SystemService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const moduleRef = await Test.createTestingModule({
       controllers: [SystemController],
       providers: [SystemService],
     }).compile();
 
-    systemController = module.get<SystemController>(SystemController);
-    systemService = module.get<SystemService>(SystemService);
+    systemController = moduleRef.get<SystemController>(SystemController);
+    systemService = moduleRef.get<SystemService>(SystemService);
   });
 
   describe('SystemService gets functionality', () => {
-    // it('should get array of systems', async () => {
-    //   const result = ['test'];
-    //   try {
-    //     jest
-    //       .spyOn(systemService, 'getSystems')
-    //       .mockImplementation(() => result);
-    //     expect(await systemController.getAll()).toBe(result);
-    //   } catch (err) {}
-    // });
-> {
+    it('should get array of systems', async () => {
+      const result = ['test'];
+      try {
+        // jest
+        //   .spyOn(systemService, 'getSystems')
+        //   .mockImplementation(async () => result);
+
+        expect(await systemController.getAll()).toBe(result);
+      } catch (err) {}
+    });
+
+    it('getSystemById', async () => {
+      const result = ['test'];
+      // jest.spyOn(systemService, 'getSystemById').mockImplementation(() => result);
+      const system = await systemController.getSystemById('987');
+      expect(system).toBe(result);
+    });
+  });
+
+  it('should be defined', () => {
     expect(systemController).toBeDefined();
   });
 });
