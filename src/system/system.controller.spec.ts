@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import { Test, TestingModule } from '@nestjs/testing';
+/* eslint-disable prettier/prettier */
+iimport { Test, TestingModule } from '@nestjs/testing';
 import { SystemController } from './system.controller';
 import { SystemService } from './system.service';
 
@@ -27,9 +27,7 @@ describe('SystemController', () => {
     //     expect(await systemController.getAll()).toBe(result);
     //   } catch (err) {}
     // });
-  });
-
-  it('should be defined', () => {
+> {
     expect(systemController).toBeDefined();
   });
 });
