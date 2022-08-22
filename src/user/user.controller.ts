@@ -12,7 +12,7 @@ import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   @Get()
   async getAll() {
@@ -22,22 +22,21 @@ export class UserController {
       console.log(err);
       return err;
     }
-    
+
   }
 
   @Get(':id')
-  async getUserById(@Param('id') id: string) {
-    try {  
-      return await this.userService.getUserById(id);
+  async getUserById(@Param('fireBaseUId') fireBaseUId: string) {
+    try {
+      return await this.userService.getUserById(fireBaseUId);
     } catch (err) {
-      console.log(err);
       return err;
     }
   }
 
   @Get('email:email')
   async getUserByEmail(@Param('email') email: string) {
-    try {  
+    try {
       return await this.userService.getUserByEmail(email);
     } catch (err) {
       console.log(err);
@@ -47,6 +46,7 @@ export class UserController {
 
   @Post()
   async signup(
+    @Body('fireBaseUId') fireBaseUId: string,
     @Body('role') role: string,
     @Body('firstName') firstName: string,
     @Body('lastName') lastName: string,
@@ -55,21 +55,22 @@ export class UserController {
   ) {
     try {
       return await this.userService.AddUser(
-      role,
-      firstName,
-      lastName,
-      phone,
-      email
+        fireBaseUId,
+        role,
+        firstName,
+        lastName,
+        phone,
+        email
       );
     } catch (err) {
       return err;
     }
-    
+
   }
 
-  @Put(':id')
+  @Put(':fireBaseUId')
   async updateUser(
-    @Param('id') id: string,
+    @Param('fireBaseUId') fireBaseUId: string,
     @Body('role') role: string,
     @Body('firstName') firstName: string,
     @Body('lastName') lastName: string,
@@ -77,7 +78,7 @@ export class UserController {
     @Body('email') email: string,
   ) {
     try {
-      const isExists = await this.userService.getUserById(id);
+      const isExists = await this.userService.getUserById(fireBaseUId);
 
       if (!isExists) {
         return {
@@ -87,17 +88,17 @@ export class UserController {
         };
       }
 
-      return await this.userService.updateUser(id, role, firstName, lastName, phone, email);
+      return await this.userService.updateUser(fireBaseUId, role, firstName, lastName, phone, email);
     } catch (err) {
       console.log(err);
       return err;
     }
   }
 
-  @Delete(':id')
-  async deleteUser(@Param('id') id: string) {
-    try{ 
-      return await this.userService.deleteUser(id);
+  @Delete(':fireBaseUId')
+  async deleteUser(@Param('fireBaseUId') fireBaseUId: string) {
+    try {
+      return await this.userService.deleteUser(fireBaseUId);
     } catch (err) {
       console.log(err);
       return err;

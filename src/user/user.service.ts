@@ -9,6 +9,7 @@ export class UserService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) { }
 
   async AddUser(
+    fireBaseUId: string,
     role: string,
     firstName: string,
     lastName: string,
@@ -16,6 +17,7 @@ export class UserService {
     email: string
   ) {
     const newUser = new this.userModel({
+      fireBaseUId,
       role,
       firstName,
       lastName,
@@ -29,8 +31,8 @@ export class UserService {
     return await this.userModel.find();
   }
 
-  async getUserById(id: string) {
-    return await this.userModel.findById(id).exec();
+  async getUserById(fireBaseUId: string) {
+    return await this.userModel.findOne({fireBaseUId : fireBaseUId}).exec();
   }
 
   async getUserByEmail(email: string) {
@@ -38,7 +40,7 @@ export class UserService {
   }
 
   async updateUser(
-    id: string,
+    fireBaseUId: string,
     role: string,
     firstName: string,
     lastName: string,
@@ -47,7 +49,7 @@ export class UserService {
   ) {
     return await this.userModel
       .updateOne(
-        { _id: id },
+        { fireBaseUId: fireBaseUId },
         {
           $set: {
             role: role,
@@ -61,7 +63,7 @@ export class UserService {
       .exec();
   }
 
-  async deleteUser(id: string) {
-    return await this.userModel.findByIdAndDelete(id).exec();
+  async deleteUser(fireBaseUId: string) {
+    return await this.userModel.findByIdAndDelete(fireBaseUId).exec();
   }
 }
