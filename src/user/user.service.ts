@@ -8,7 +8,7 @@ import { User } from './user.model';
 export class UserService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) { }
 
-  async AddUser(
+  async addUser(
     role: string,
     firstName: string,
     lastName: string,

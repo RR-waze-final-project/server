@@ -54,7 +54,7 @@ export class UserController {
     @Body('email') email: string,
   ) {
     try {
-      return await this.userService.AddUser(
+      return await this.userService.addUser(
       role,
       firstName,
       lastName,
