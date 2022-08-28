@@ -39,6 +39,10 @@ export class SystemService {
     const result = await this.systemModel.findById(id).exec();
     return result;
   }
+  
+  async getSystemByUrlName(urlName: string) {
+    return await this.systemModel.findOne({ urlName: urlName}).exec();
+  }
 
   async getSystemsOfAdmin(adminUid: string) {
     return await this.systemModel.find({ adminUid: adminUid }).exec();

@@ -38,6 +38,11 @@ export class SystemController {
   async getSystemsOfAdmin(@Param('adminUid') adminUid: string) {
     return await this.systemService.getSystemsOfAdmin(adminUid);
   }
+  
+  @Get('urlName/:urlName')
+  async getSystemByUrlName(@Param('urlName') urlName: string) {
+    return await this.systemService.getSystemByUrlName(urlName);
+  }
 
   @Post()
   async createSystem(
