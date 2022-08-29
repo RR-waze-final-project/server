@@ -10,7 +10,7 @@ export const SystemSchema = new mongoose.Schema({
     description: { type: String, required: true },
     communicationDetails: { type: {
         email: { type: String },
-        phone: { type: Number }
+        phone: { type: String }
     }, required: true }
 })
 

@@ -36,8 +36,7 @@ export class SystemService {
   }
 
   async getSystemById(id: string) {
-    const result = await this.systemModel.findById(id).exec();
-    return result;
+    return await this.systemModel.findById(id).exec();
   }
   
   async getSystemByUrlName(urlName: string) {
