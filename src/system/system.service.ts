@@ -48,7 +48,7 @@ export class SystemService {
   }
 
   async updateSystem(
-    uid: string,
+    _id: string,
     topic: string,
     urlName: string,
     urlImg: string,
@@ -59,7 +59,7 @@ export class SystemService {
   ) {
     return await this.systemModel
       .updateOne(
-        { _id: uid },
+        { _id: _id },
         {
           $set: {
             topic: topic,
@@ -75,7 +75,7 @@ export class SystemService {
       .exec();
   }
 
-  async deleteSystem(uid: string) {
-    return await this.systemModel.findByIdAndDelete(uid).exec();
+  async deleteSystem(_id: string) {
+    return await this.systemModel.findByIdAndDelete(_id).exec();
   }
 }

@@ -24,10 +24,10 @@ export class RequestController {
         }
     }
 
-    @Get(':uid')
-    async getRequestById(@Param('uid') uid: string) {
+    @Get(':_id')
+    async getRequestById(@Param('_id') _id: string) {
         try {
-            return await this.requestService.getRequestById(uid);
+            return await this.requestService.getRequestById(_id);
         } catch (err) {
             console.log(err);
             return err;
@@ -67,9 +67,9 @@ export class RequestController {
         }
     }
 
-    @Put(':uid')
+    @Put(':_id')
     async updateRequest(
-        @Param('uid') uid: string,
+        @Param('_id') _id: string,
         @Body('firstName') firstName: string,
         @Body('lastName') lastName: string,
         @Body('email') email: string,
@@ -80,7 +80,7 @@ export class RequestController {
         @Body('notes') notes: string,
     ) {
         try {
-            const isExists = await this.requestService.getRequestById(uid);
+            const isExists = await this.requestService.getRequestById(_id);
 
             if (!isExists) {
                 return {
@@ -91,7 +91,7 @@ export class RequestController {
             }
 
             return await this.requestService.updateRequest(
-                uid,
+                _id,
                 firstName,
                 lastName,
                 email,
@@ -107,10 +107,10 @@ export class RequestController {
         }
     }
 
-    @Delete(':uid')
-    async deleteRequest(@Param('uid') uid: string) {
+    @Delete(':_id')
+    async deleteRequest(@Param('_id') _id: string) {
         try {
-            return await this.requestService.deleteRequest(uid);
+            return await this.requestService.deleteRequest(_id);
         } catch (err) {
             console.log(err);
             return err;

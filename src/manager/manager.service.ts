@@ -40,7 +40,7 @@ export class ManagerService {
     }
 
     async updateManager(
-        uid: string,
+        _id: string,
         userId: string,
         systemId: string,
         active: string,
@@ -49,7 +49,7 @@ export class ManagerService {
     ) {
         return await this.managerModel
             .updateOne(
-                { _id: uid },
+                { _id: _id },
                 {
                     $set: {
                         userId: userId,
@@ -63,7 +63,7 @@ export class ManagerService {
             .exec();
     }
 
-    async deleteManager(uid: string) {
-        return await this.managerModel.findByIdAndDelete(uid).exec();
+    async deleteManager(_id: string) {
+        return await this.managerModel.findByIdAndDelete(_id).exec();
     }
 }

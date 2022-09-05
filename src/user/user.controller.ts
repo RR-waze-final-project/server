@@ -25,7 +25,7 @@ export class UserController {
 
   }
 
-  @Get(':id')
+  @Get(':fireBaseUId')
   async getUserById(@Param('fireBaseUId') fireBaseUId: string) {
     try {
       return await this.userService.getUserById(fireBaseUId);
@@ -50,8 +50,8 @@ export class UserController {
     @Body('role') role: string,
     @Body('firstName') firstName: string,
     @Body('lastName') lastName: string,
-    @Body('phone') phone: string,
     @Body('email') email: string,
+    @Body('phone') phone: string | undefined | null,
   ) {
     try {
       return await this.userService.AddUser(
@@ -59,8 +59,8 @@ export class UserController {
         role,
         firstName,
         lastName,
+        email,
         phone,
-        email
       );
     } catch (err) {
       return err;
@@ -74,8 +74,8 @@ export class UserController {
     @Body('role') role: string,
     @Body('firstName') firstName: string,
     @Body('lastName') lastName: string,
-    @Body('phone') phone: string,
     @Body('email') email: string,
+    @Body('phone') phone: string | undefined | null,
   ) {
     try {
       const isExists = await this.userService.getUserById(fireBaseUId);
@@ -88,7 +88,7 @@ export class UserController {
         };
       }
 
-      return await this.userService.updateUser(fireBaseUId, role, firstName, lastName, phone, email);
+      return await this.userService.updateUser(fireBaseUId, role, firstName, lastName, email, phone);
     } catch (err) {
       console.log(err);
       return err;

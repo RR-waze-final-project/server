@@ -13,16 +13,16 @@ export class UserService {
     role: string,
     firstName: string,
     lastName: string,
-    phone: string,
-    email: string
+    email: string,
+    phone: string | undefined | null
   ) {
     const newUser = new this.userModel({
       fireBaseUId,
       role,
       firstName,
       lastName,
-      phone,
-      email
+      email,
+      phone
     });
     return await newUser.save();
   }
@@ -44,8 +44,8 @@ export class UserService {
     role: string,
     firstName: string,
     lastName: string,
-    phone: string,
-    email: string
+    email: string,
+    phone: string | undefined | null
   ) {
     return await this.userModel
       .updateOne(
@@ -55,8 +55,8 @@ export class UserService {
             role: role,
             firstName: firstName,
             lastName: lastName,
-            phone: phone,
             email: email,
+            phone: phone,
           },
         },
       )

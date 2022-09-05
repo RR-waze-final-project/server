@@ -24,10 +24,10 @@ export class SystemController {
     }
   }
 
-  @Get(':uid')
-  async getSystemById(@Param('uid') uid: string) {
+  @Get(':_id')
+  async getSystemById(@Param('_id') _id: string) {
     try {
-      return await this.systemService.getSystemById(uid);
+      return await this.systemService.getSystemById(_id);
     } catch (err) {
       console.log(err);
       return err;
@@ -55,6 +55,14 @@ export class SystemController {
     @Body('communicationDetails') communicationDetails: object,
   ) {
     try {
+      console.log(
+        topic,
+        urlName,
+        urlImg,
+        objectName,
+        adminUid,
+        description,
+        communicationDetails,)
       return await this.systemService.AddSystem(
         topic,
         urlName,
@@ -70,9 +78,9 @@ export class SystemController {
     }
   }
 
-  @Put(':uid')
+  @Put(':_id')
   async updateSystem(
-    @Param('uid') uid: string,
+    @Param('_id') _id: string,
     @Body('topic') topic: string,
     @Body('urlName') urlName: string,
     @Body('urlImg') urlImg: string,
@@ -82,7 +90,7 @@ export class SystemController {
     @Body('communicationDetails') communicationDetails: object,
   ) {
     try {
-      const isExists = await this.systemService.getSystemById(uid);
+      const isExists = await this.systemService.getSystemById(_id);
 
       if (!isExists) {
         return {
@@ -91,9 +99,8 @@ export class SystemController {
           error: 'Bad Request',
         };
       }
-
       return await this.systemService.updateSystem(
-        uid,
+        _id,
         topic,
         urlName,
         urlImg,
@@ -108,10 +115,10 @@ export class SystemController {
     }
   }
 
-  @Delete(':uid')
-  async deleteSystem(@Param('uid') uid: string) {
+  @Delete(':_id')
+  async deleteSystem(@Param('_id') _id: string) {
     try {
-      return await this.systemService.deleteSystem(uid);
+      return await this.systemService.deleteSystem(_id);
     } catch (err) {
       console.log(err);
       return err;

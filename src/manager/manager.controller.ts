@@ -24,10 +24,10 @@ export class ManagerController {
         }
     }
 
-    @Get(':uid')
-    async getManagerById(@Param('uid') uid: string) {
+    @Get(':_id')
+    async getManagerById(@Param('_id') _id: string) {
         try {
-            return await this.managerService.getManagerById(uid);
+            return await this.managerService.getManagerById(_id);
         } catch (err) {
             console.log(err);
             return err;
@@ -61,9 +61,9 @@ export class ManagerController {
         }
     }
 
-    @Put(':uid')
+    @Put(':_id')
     async updateManager(
-        @Param('uid') uid: string,
+        @Param('_id') _id: string,
         @Body('userId') userId: string,
         @Body('systemId') systemId: string,
         @Body('active') active: string,
@@ -71,7 +71,7 @@ export class ManagerController {
         @Body('role') role: string,
     ) {
         try {
-            const isExists = await this.managerService.getManagerById(uid);
+            const isExists = await this.managerService.getManagerById(_id);
 
             if (!isExists) {
                 return {
@@ -82,7 +82,7 @@ export class ManagerController {
             }
 
             return await this.managerService.updateManager(
-                uid,
+                _id,
                 userId,
                 systemId,
                 active,
@@ -95,10 +95,10 @@ export class ManagerController {
         }
     }
 
-    @Delete(':uid')
-    async deleteManager(@Param('uid') uid: string) {
+    @Delete(':_id')
+    async deleteManager(@Param('_id') _id: string) {
         try {
-            return await this.managerService.deleteManager(uid);
+            return await this.managerService.deleteManager(_id);
         } catch (err) {
             console.log(err);
             return err;

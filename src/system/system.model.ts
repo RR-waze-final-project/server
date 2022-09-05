@@ -15,7 +15,7 @@ export const SystemSchema = new mongoose.Schema({
 })
 
 export interface System {
-    uid: string;
+    _id: string;
     topic: string;
     urlName: string;
     urlImg: string;

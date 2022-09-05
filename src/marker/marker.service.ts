@@ -44,7 +44,7 @@ export class MarkerService {
     }
 
     async updateMarker(
-        uid: string,
+        _id: string,
         manager_id: string,
         system_id: string,
         locationGeolocation: object,
@@ -55,7 +55,7 @@ export class MarkerService {
     ) {
         return await this.markerModel
             .updateOne(
-                { _id: uid },
+                { _id: _id },
                 {
                     $set: {
                         manager_id: manager_id,
@@ -71,7 +71,7 @@ export class MarkerService {
             .exec();
     }
 
-    async deleteMarker(uid: string) {
-        return await this.markerModel.findByIdAndDelete(uid).exec();
+    async deleteMarker(_id: string) {
+        return await this.markerModel.findByIdAndDelete(_id).exec();
     }
 }

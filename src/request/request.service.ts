@@ -46,7 +46,7 @@ export class RequestService {
     }
 
     async updateRequest(
-        uid: string,
+        _id: string,
         firstName: string,
         lastName: string,
         email: string,
@@ -58,7 +58,7 @@ export class RequestService {
     ) {
         return await this.requestModel
             .updateOne(
-                { _id: uid },
+                { _id: _id },
                 {
                     $set: {
                         firstName: firstName,
@@ -75,7 +75,7 @@ export class RequestService {
             .exec();
     }
 
-    async deleteRequest(uid: string) {
-        return await this.requestModel.findByIdAndDelete(uid).exec();
+    async deleteRequest(_id: string) {
+        return await this.requestModel.findByIdAndDelete(_id).exec();
     }
 }

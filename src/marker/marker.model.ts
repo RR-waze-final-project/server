@@ -22,7 +22,7 @@ export const MarkerSchema = new mongoose.Schema({
 });
 
 export interface Marker {
-    uid: string;
+    _id: string;
     manager_id: string;
     system_id: string;
     locationGeolocation: object;

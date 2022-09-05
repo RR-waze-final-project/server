@@ -13,7 +13,7 @@ export const RequestSchema = new mongoose.Schema({
 })
 
 export interface Request {
-    uid: string;
+    _id: string;
     firstName: string;
     lastName: string;
     email: string;

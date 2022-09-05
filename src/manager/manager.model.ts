@@ -10,7 +10,7 @@ export const ManagerSchema = new mongoose.Schema({
 })
 
 export interface Manager {
-    uid: string;
+    _id: string;
     userId: string;
     systemId: string;
     active: string;

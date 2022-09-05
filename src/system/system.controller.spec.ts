@@ -20,11 +20,11 @@ describe('SystemController', () => {
 
   describe('SystemService gets functionality', () => {
     it('should get array of systems', async () => {
-      const result = ['test'];
+      const result = [{}];
       try {
-        // jest
-        //   .spyOn(systemService, 'getSystems')
-        //   .mockImplementation(async () => result);
+        jest
+          .spyOn(systemService, 'getSystems')
+          .mockImplementation(async () => result);
 
         expect(await systemController.getAll()).toBe(result);
       } catch (err) {}
@@ -32,7 +32,7 @@ describe('SystemController', () => {
 
     it('getSystemById', async () => {
       const result = ['test'];
-      // jest.spyOn(systemService, 'getSystemById').mockImplementation(() => result);
+      jest.spyOn(systemService, 'getSystemById').mockImplementation(() => result);
       const system = await systemController.getSystemById('987');
       expect(system).toBe(result);
     });

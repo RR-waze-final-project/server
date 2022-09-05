@@ -24,10 +24,10 @@ import {
       }
     }
   
-    @Get(':uid')
-    async getMarkerById(@Param('uid') uid: string) {
+    @Get(':_id')
+    async getMarkerById(@Param('_id') _id: string) {
       try {
-        return await this.markerService.getMarkerById(uid);
+        return await this.markerService.getMarkerById(_id);
       } catch (err) {
         console.log(err);
         return err;
@@ -65,9 +65,9 @@ import {
       }
     }
   
-    @Put(':uid')
+    @Put(':_id')
     async updateMarker(
-      @Param('uid') uid: string,
+      @Param('_id') _id: string,
       @Body('manager_id') manager_id: string,
       @Body('system_id') system_id: string,
       @Body('locationGeolocation') locationGeolocation: object,
@@ -77,7 +77,7 @@ import {
       @Body('communicationDetails') communicationDetails: object,
     ) {
       try {
-        const isExists = await this.markerService.getMarkerById(uid);
+        const isExists = await this.markerService.getMarkerById(_id);
   
         if (!isExists) {
           return {
@@ -88,7 +88,7 @@ import {
         }
   
         return await this.markerService.updateMarker(
-          uid,
+          _id,
           manager_id,
           system_id,
           locationGeolocation,
@@ -103,10 +103,10 @@ import {
       }
     }
   
-    @Delete(':uid')
-    async deleteMarker(@Param('uid') uid: string) {
+    @Delete(':_id')
+    async deleteMarker(@Param('_id') _id: string) {
       try {
-        return await this.markerService.deleteMarker(uid);
+        return await this.markerService.deleteMarker(_id);
       } catch (err) {
         console.log(err);
         return err;
