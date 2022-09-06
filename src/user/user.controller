@@ -1,32 +1,31 @@
-/* eslint-disable prettier/prettier */
+// /* eslint-disable prettier/prettier */
 // import { UserController } from './user.controller';
 // import { UserService } from './user.service';
 // import { Test } from '@nestjs/testing';
-// import { User}  from '../DTO/user.dto'
 // import { Model } from 'mongoose';
-// import { ObjectId } from 'mongodb';
+// import { User } from './user.model';
 
 // describe('UserController', () => {
 //   let userController: UserController;
 //   let userService: UserService;
 
 //   beforeEach(async () => {
-//     // const moduleRef = await Test.createTestingModule({
-//     //     controllers: [UserController],
-//     //     providers: [UserService],
-//     //   }).compile();
+//     const moduleRef = await Test.createTestingModule({
+//         controllers: [UserController],
+//         providers: [UserService],
+//       }).compile();
 
 //     let u: Model<User>;
 //     userService = new UserService(u);
 //     userController = new UserController(userService);
-//     //   userService = moduleRef.get<UserService>(UserService);
-//     // userController = moduleRef.get<UserController>(UserController);
+//       userService = moduleRef.get<UserService>(UserService);
+//     userController = moduleRef.get<UserController>(UserController);
 //   });
 
 //   describe('getAllUsers', () => {
 //     it('should return an array of users', async () => {
 //       let result:User[];
-//       // jest.spyOn(userService, 'getAllUsers').mockImplementation(() => result);
+//       jest.spyOn(userService, 'getAllUsers').mockImplementation(() => result);
 //       let users=await userService.getAllUsers();
 //       expect(typeof(users)).toBe(typeof(result));
 //     });

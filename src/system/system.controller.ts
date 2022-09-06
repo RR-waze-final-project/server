@@ -55,14 +55,6 @@ export class SystemController {
     @Body('communicationDetails') communicationDetails: object,
   ) {
     try {
-      console.log(
-        topic,
-        urlName,
-        urlImg,
-        objectName,
-        adminUid,
-        description,
-        communicationDetails,)
       return await this.systemService.AddSystem(
         topic,
         urlName,

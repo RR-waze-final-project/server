@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Test } from '@nestjs/testing';
 import { SystemController } from './system.controller';
+import { System } from './system.model';
 import { SystemService } from './system.service';
 
 describe('SystemController', () => {
@@ -9,10 +10,17 @@ describe('SystemController', () => {
   let systemService: SystemService;
 
   beforeEach(async () => {
+    // const moduleRef = await Test.createTestingModule({
+    //   controllers: [SystemController],
+    //   providers: [SystemService],
+    // }).compile();
+
     const moduleRef = await Test.createTestingModule({
       controllers: [SystemController],
       providers: [SystemService],
     }).compile();
+    
+    // systemService = await moduleRef.resolve(systemService);
 
     systemController = moduleRef.get<SystemController>(SystemController);
     systemService = moduleRef.get<SystemService>(SystemService);
@@ -20,18 +28,18 @@ describe('SystemController', () => {
 
   describe('SystemService gets functionality', () => {
     it('should get array of systems', async () => {
-      const result = [{}];
+      const result: any[] = ['test'];
       try {
         jest
           .spyOn(systemService, 'getSystems')
           .mockImplementation(async () => result);
 
         expect(await systemController.getAll()).toBe(result);
-      } catch (err) {}
+      } catch (err) { }
     });
 
     it('getSystemById', async () => {
-      const result = ['test'];
+      const result: any = { test: 'test' };
       jest.spyOn(systemService, 'getSystemById').mockImplementation(() => result);
       const system = await systemController.getSystemById('987');
       expect(system).toBe(result);
