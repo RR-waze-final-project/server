@@ -91,6 +91,7 @@ export class SystemController {
           error: 'Bad Request',
         };
       }
+      
       return await this.systemService.updateSystem(
         _id,
         topic,
