@@ -1,27 +1,27 @@
 /* eslint-disable prettier/prettier */
-import {
-  Body,
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Request } from 'express';
+import { 
   Controller,
-  Delete,
   Get,
-  Param,
   Post,
+  Param,
+  Body,
+  Delete,
   Put,
+  Req,
 } from '@nestjs/common';
+// import * as common from '@nestjs/common';
 import { SystemService } from './system.service';
+import console from 'console';
 
 @Controller('system')
 export class SystemController {
   constructor(private systemService: SystemService) { }
 
   @Get()
-  async getAll() {
-    try {
-      return await this.systemService.getSystems();
-    } catch (err) {
-      console.log(err);
-      return err;
-    }
+  async getSystemsOfAdmin(@Req() request: Request) {
+    return await this.systemService.getSystemsOfAdmin(request['user'].uid);
   }
 
   @Get(':_id')
@@ -34,11 +34,6 @@ export class SystemController {
     }
   }
 
-  @Get('specificSystems/:adminUid')
-  async getSystemsOfAdmin(@Param('adminUid') adminUid: string) {
-    return await this.systemService.getSystemsOfAdmin(adminUid);
-  }
-  
   @Get('urlName/:urlName')
   async getSystemByUrlName(@Param('urlName') urlName: string) {
     return await this.systemService.getSystemByUrlName(urlName);
@@ -80,6 +75,7 @@ export class SystemController {
     @Body('adminUid') adminUid: string,
     @Body('description') description: string,
     @Body('communicationDetails') communicationDetails: object,
+    @Req() request: Request
   ) {
     try {
       const isExists = await this.systemService.getSystemById(_id);
@@ -118,3 +114,4 @@ export class SystemController {
     }
   }
 }
+

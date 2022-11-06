@@ -8,7 +8,7 @@ import { System } from './system.model';
 export class SystemService {
   constructor(
     @InjectModel('System') private readonly systemModel: Model<System>,
-  ) {}
+  ) { }
 
   async AddSystem(
     topic: string,
@@ -31,16 +31,12 @@ export class SystemService {
     return await newSystem.save();
   }
 
-  async getSystems() {
-    return await this.systemModel.find();
-  }
-
   async getSystemById(id: string) {
     return await this.systemModel.findById(id).exec();
   }
-  
+
   async getSystemByUrlName(urlName: string) {
-    return await this.systemModel.findOne({ urlName: urlName}).exec();
+    return await this.systemModel.findOne({ urlName: urlName }).exec();
   }
 
   async getSystemsOfAdmin(adminUid: string) {
